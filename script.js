@@ -57,6 +57,14 @@ function getPasswordOptions() {
   return passwordOptions;
 }
 
+// Selects a random character
+function getRandom(arr) {
+  var randIndex = Math.floor(Math.random() * arr.length);
+  var randElement = arr[randIndex];
+
+  return randElement;
+}
+
 
 
 // Assignment Code
