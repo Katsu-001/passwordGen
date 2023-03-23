@@ -15,6 +15,7 @@ Follow the URL to the deployed application. Click the generate password button, 
 ## URL
 
 [Deployed URL](https://katsu-001.github.io/passwordGen/)
+
 [GitHub Repository](https://github.com/Katsu-001/passwordGen)
 
 
