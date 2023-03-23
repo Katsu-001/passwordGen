@@ -7,8 +7,9 @@ var specialCharacters = ['@', '%', '+', '\\', '/', "'", '!', '#', '$', '^', '?',
 //Function to determine password settings
 
 function getPasswordOptions() {
-  var length = parseINT(
-    prompt('How long will the password be? 8-128'), 15
+  var length = parseInt(
+    prompt('How long will the password be? 8-128'), 
+    10
   );
 
   if (Number.isNaN(length)) {
@@ -35,7 +36,7 @@ function getPasswordOptions() {
   var hasSpecialCharacters = confirm(
     'Press OK to include special characters.'
   );
-// Check to make sure there are some characters to be used
+  // Check to make sure there are some characters to be used
   if (
     hasSpecialCharacters === false &&
     hasNumericCharacters === false &&
@@ -45,7 +46,7 @@ function getPasswordOptions() {
     alert('Needs at least one character type');
     return null;
   }
-// storage for options selected
+  // storage for options selected
   var passwordOptions = {
     length: length,
     hasSpecialCharacters: hasSpecialCharacters,
@@ -63,6 +64,38 @@ function getRandom(arr) {
   var randElement = arr[randIndex];
 
   return randElement;
+}
+
+// The Actual Generation of the Password
+
+function generatePassword() {
+  var options = getPasswordOptions();
+  var result = [];
+  var possibleCharacters = [];
+
+  // creating a list of all usable characters
+  if (options.hasSpecialCharacters) {
+    possibleCharacters = possibleCharacters.concat(specialCharacters);
+  }
+  if (options.hasNumericCharacters) {
+    possibleCharacters = possibleCharacters.concat(numericCharacters);
+  }
+  if (options.hasLowerCasedCharacters) {
+    possibleCharacters = possibleCharacters.concat(lowerCasedCharacters);
+  }
+  if (options.hasUpperCasedCharacters) {
+    possibleCharacters = possibleCharacters.concat(upperCasedCharacters);
+  }
+
+  // Obtains a random character up to password length, building an array
+  for (var i = 0; i < options.length; i++) {
+    var possibleCharacter = getRandom(possibleCharacters);
+
+    result.push(possibleCharacter);
+  }
+
+  // adds all elements of the result into a string
+  return result.join('');
 }
 
 
